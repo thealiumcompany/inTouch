@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SupportActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_bar_support"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/back_support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/support"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:layout_below="@+id/top_bar_support">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/support_button_1"
+                    android:layout_marginBottom="40dp"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_bug"
+                        android:layout_gravity="center_vertical"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="0dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/report_a_bug"
+                        android:textSize="18sp"
+                        android:textColor="@color/secondaryTextColor"
+                        android:layout_gravity="center"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/support_button_2"
+                    android:layout_below="@+id/support_button_1"
+                    android:layout_marginBottom="40dp"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_hammer"
+                        android:layout_gravity="center_vertical"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="0dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/suggest_a_feature"
+                        android:textSize="18sp"
+                        android:textColor="@color/secondaryTextColor"
+                        android:layout_gravity="center"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/support_button_3"
+                    android:layout_marginBottom="40dp"
+                    android:layout_below="@+id/support_button_2"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pro"
+                        android:layout_gravity="center_vertical"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="0dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/redeem_pro_status"
+                        android:textSize="18sp"
+                        android:textColor="@color/secondaryTextColor"
+                        android:layout_gravity="center"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/support_button_4"
+                    android:layout_below="@+id/support_button_3"
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_mail_1"
+                        android:layout_gravity="center_vertical"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="0dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/other_enquiry"
+                        android:textSize="18sp"
+                        android:textColor="@color/secondaryTextColor"
+                        android:layout_gravity="center"/>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+    </ScrollView>
+
+</RelativeLayout>

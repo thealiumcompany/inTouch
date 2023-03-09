@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="card_details"
+            type="com.thealiumcompany.intouch.CardDetails" />
+        <variable
+            name="color_binding"
+            type="com.thealiumcompany.intouch.ColorBinding" />
+        <variable
+            name="image_binding"
+            type="com.thealiumcompany.intouch.ImageBinding" />
+    </data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="5dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/card_regal_back_bg_primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/card_base"
+            setImageViewTint="@{color_binding.primaryColor}"/>
+
+        <RelativeLayout
+            android:layout_width="310dp"
+            android:layout_height="183dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/card_regal_back_pp"
+                    setUserPhotoURI="@{image_binding.photoURL}"
+                    android:layout_width="147dp"
+                    android:layout_height="183dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/img_sample_pp"
+                    android:scaleType="centerCrop"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/card_regal_back_vector_1_tertiary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/card_five_middle_rectangle"
+                        setImageViewTint="@{color_binding.tertiaryColor}"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/card_regal_back_vector_2_secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/card_five_middle_rectangle"
+                        setImageViewTint="@{color_binding.secondaryColor}"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/card_regal_back_vector_3_secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/card_five_middle_rectangle"
+                        setImageViewTint="@{color_binding.secondaryColor}"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/card_regal_back_vector_4_tertiary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/card_five_middle_rectangle"
+                        setImageViewTint="@{color_binding.tertiaryColor}"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_centerVertical="true">
+
+                    <ImageView
+                        android:id="@+id/card_regal_back_logo"
+                        setImageViewURI="@{image_binding.logoURL}"
+                        android:layout_width="65dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/img_alium_logo"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:id="@+id/card_regal_back_email_textPrimary"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{card_details.website}"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        setTextColor="@{color_binding.textPrimaryColor}"
+                        android:letterSpacing="0.05" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
+</layout>

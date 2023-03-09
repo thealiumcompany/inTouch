@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="card_details"
+            type="com.thealiumcompany.intouch.CardDetails" />
+        <variable
+            name="color_binding"
+            type="com.thealiumcompany.intouch.ColorBinding" />
+    </data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="5dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/card_3d_front_bg_secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/card_base"
+            setImageViewTint="@{color_binding.secondaryColor}"/>
+
+        <RelativeLayout
+            android:layout_width="310dp"
+            android:layout_height="185dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/card_3d_front_logo"
+                    android:layout_width="65dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/img_alium_logo" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/card_3d_front_name_textSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@{card_details.name}"
+                    setTextColor="@{color_binding.textSecondaryColor}"
+                    android:textStyle="bold"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:id="@+id/card_3d_front_role_textSecondary"
+                    android:layout_below="@+id/card_3d_front_name_textSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:text="@{card_details.position}"
+                    setTextColor="@{color_binding.textSecondaryColor}"
+                    android:textSize="8sp"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/card_3d_front_vector_2_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card_3d_front_role_textSecondary"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/card_one_front_design_one"
+                    setImageViewTint="@{color_binding.primaryColor}"/>
+
+                <LinearLayout
+                    android:id="@+id/card_3d_front_phone_section"
+                    android:layout_below="@+id/card_3d_front_vector_2_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/card_3d_front_phonenumber_1_textSecondary"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_gravity="end"
+                            android:text="@{card_details.phone1}"
+                            setTextColor="@{color_binding.textSecondaryColor}"
+                            android:textSize="8sp"/>
+
+                        <TextView
+                            android:id="@+id/card_3d_front_phonenumber_2_textSecondary"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_gravity="end"
+                            android:text="@{card_details.phone2}"
+                            setTextColor="@{color_binding.textSecondaryColor}"
+                            android:textSize="8sp"/>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/card_3d_front_phone_primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/phone_logo"
+                        setImageViewTint="@{color_binding.primaryColor}"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/card_3d_front_email_section"
+                    android:layout_below="@+id/card_3d_front_phone_section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="15dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/card_3d_front_email_1_textSecondary"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_gravity="end"
+                            android:text="@{card_details.email1}"
+                            setTextColor="@{color_binding.textSecondaryColor}"
+                            android:textSize="8sp"/>
+
+                        <TextView
+                            android:id="@+id/card_3d_front_email_2_textSecondary"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_gravity="end"
+                            android:text="@{card_details.email2}"
+                            setTextColor="@{color_binding.textSecondaryColor}"
+                            android:textSize="8sp"/>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/card_3d_front_email_primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/email_logo"
+                        setImageViewTint="@{color_binding.primaryColor}"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/card_3d_front_location_section"
+                    android:layout_below="@+id/card_3d_front_email_section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="15dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/card_3d_front_street_address_textSecondary"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_gravity="end"
+                            android:text="@{card_details.streetAddress}"
+                            setTextColor="@{color_binding.textSecondaryColor}"
+                            android:textSize="8sp"/>
+
+                        <TextView
+                            android:id="@+id/card_3d_front_town_textSecondary"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_gravity="end"
+                            android:text="@{card_details.cityTown}"
+                            setTextColor="@{color_binding.textSecondaryColor}"
+                            android:textSize="8sp"/>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/card_3d_front_location_primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/location_logo"
+                        setImageViewTint="@{color_binding.primaryColor}"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
+</layout>

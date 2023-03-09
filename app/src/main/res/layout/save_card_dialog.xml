@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="550dp"
+    android:background="@drawable/dialog_bg">
+
+    <TextView
+        android:id="@+id/final_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/preview"
+        android:letterSpacing="0.05"
+        android:textSize="20sp"
+        android:textColor="@color/secondaryTextColor"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/card_front_preview"
+        android:layout_below="@+id/final_preview"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/img_card_elegant" />
+
+    <ImageView
+        android:id="@+id/card_back_preview"
+        android:layout_below="@+id/card_front_preview"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/img_card_elegant" />
+
+    <EditText
+        android:id="@+id/card_name"
+        android:layout_below="@+id/card_back_preview"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="@string/enter_card_name"
+        android:gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/close_dialog"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_close"/>
+
+        <ImageView
+            android:id="@+id/download_card_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_save"/>
+
+        <ImageView
+            android:id="@+id/save_to_database"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_check_circle"/>
+    </RelativeLayout>
+
+</RelativeLayout>

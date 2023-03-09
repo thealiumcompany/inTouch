@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="600dp"
+    android:background="@drawable/dialog_bg">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_blank_image" />
+
+    <ImageView
+        android:id="@+id/card_preview"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/img_card_elegant" />
+
+    <TextView
+        android:id="@+id/base_style_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_preview"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/select_base_card_style"
+        android:textSize="20sp"
+        android:textColor="@color/secondaryTextColor"
+        android:textStyle="bold"
+        android:letterSpacing="0.05"/>
+
+    <RadioGroup
+        android:id="@+id/card_styles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/base_style_title"
+        android:layout_marginTop="20dp"
+        android:checkedButton="@id/card_style_elegant"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/card_style_elegant"
+            android:layout_width="85dp"
+            android:layout_height="35dp"
+            android:background="@drawable/card_style_bg_selector"
+            android:button="@color/transparent"
+            android:letterSpacing="0.05"
+            android:text="@string/elegant"
+            android:textAlignment="center"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/card_style_3d"
+            android:layout_width="85dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/card_style_bg_selector"
+            android:button="@color/transparent"
+            android:letterSpacing="0.05"
+            android:text="@string/_3_d"
+            android:textAlignment="center"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/card_style_sharp"
+            android:layout_width="85dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/card_style_bg_selector"
+            android:button="@color/transparent"
+            android:letterSpacing="0.05"
+            android:text="@string/sharp"
+            android:textAlignment="center"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/card_style_clean"
+            android:layout_width="85dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/card_style_bg_selector"
+            android:button="@color/transparent"
+            android:letterSpacing="0.05"
+            android:text="@string/clean"
+            android:textAlignment="center"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/card_style_regal"
+            android:layout_width="85dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/card_style_bg_selector"
+            android:button="@color/transparent"
+            android:letterSpacing="0.05"
+            android:text="@string/regal"
+            android:textAlignment="center"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/choose_style"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/card_styles"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_check_circle"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"/>
+</RelativeLayout>

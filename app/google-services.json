@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "441111118570",
+    "project_id": "intouch-6eeb7",
+    "storage_bucket": "intouch-6eeb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441111118570:android:b8c96477517ffe1776cd93",
+        "android_client_info": {
+          "package_name": "com.thealiumcompany.intouch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441111118570-h33kn7un6fo5hsqncfktdrpr00asa6mg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thealiumcompany.intouch",
+            "certificate_hash": "d1fa0eb51aecc60b2ec6d8b1fa4ea91c16660ebf"
+          }
+        },
+        {
+          "client_id": "441111118570-vmp3djoi08oe4eo13vc3dagqe714nehd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdI1XBlDjZVqUHAt1Wr2EoNtWfyvHDv04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441111118570-vmp3djoi08oe4eo13vc3dagqe714nehd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

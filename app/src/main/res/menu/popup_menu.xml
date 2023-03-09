@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_change_pp"
+        android:title="@string/change_profile_picture"/>
+    <item
+        android:id="@+id/nav_delete"
+        android:title="@string/delete_profile_picture"/>
+
+</menu>

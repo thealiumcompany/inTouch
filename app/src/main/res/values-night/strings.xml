@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">email</string>
+    <string name="change_profile_picture">Change Profile Picture</string>
+    <string name="delete_profile_picture">Delete Profile Picture</string>
+    <string name="username_user">Username: User</string>
+</resources>

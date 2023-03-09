@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="card_details"
+            type="com.thealiumcompany.intouch.CardDetails" />
+        <variable
+            name="color_binding"
+            type="com.thealiumcompany.intouch.ColorBinding" />
+        <variable
+            name="image_binding"
+            type="com.thealiumcompany.intouch.ImageBinding" />
+    </data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        bind:cardCornerRadius="5dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/card_3d_back_bg_primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/card_base"
+            setImageViewTint="@{color_binding.primaryColor}"/>
+
+        <RelativeLayout
+            android:layout_width="310dp"
+            android:layout_height="185dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/card_3d_back_vector_1_secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/card_two_back_mid_polygon_img"
+                    setImageViewTint="@{color_binding.secondaryColor}"
+                    />
+
+                <ImageView
+                    android:id="@+id/card_3d_back_logo"
+                    setImageViewURI="@{image_binding.logoURL}"
+                    android:layout_width="65dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/img_alium_logo" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="25dp">
+
+                <TextView
+                    android:id="@+id/card_3d_back_email_textPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{card_details.website}"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    setTextColor="@{color_binding.textPrimaryColor}"
+                    android:letterSpacing="0.05"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+</layout>

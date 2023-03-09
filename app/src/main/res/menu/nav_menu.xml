@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/main_items"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_my_cards"
+            android:title="@string/my_cards"
+            android:icon="@drawable/ic_my_cards" />
+
+        <item
+            android:id="@+id/nav_recently_shared"
+            android:title="@string/recently_shared"
+            android:icon="@drawable/ic_recently_shared"/>
+
+        <item
+            android:id="@+id/nav_support"
+            android:title="@string/support"
+            android:icon="@drawable/ic_support"/>
+
+        <item
+            android:id="@+id/nav_about_us"
+            android:title="@string/about_us"
+            android:icon="@drawable/ic_about_us"/>
+    </group>
+
+</menu>

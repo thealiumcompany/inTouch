@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <color name="primaryColor">#052160</color>
+    <color name="primaryLightColor">#40488e</color>
+    <color name="primaryDarkColor">#000036</color>
+    <color name="secondaryColor">#ffffff</color>
+    <color name="secondaryLightColor">#ffffff</color>
+    <color name="secondaryDarkColor">#979797</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+    <color name="transparent">#0000ffff</color>
+    <color name="white">#ffffff</color>
+    <color name="darkGreen">#12394A</color>
+    <color name="cardTwoPrimary">#4CAF50</color>
+    <color name="cardTwoSecondary">#12394A</color>
+    <color name="cardTwoTertiary">#FFFFFF</color>
+    <color name="cardTwoTextPrimary">#FFFFFF</color>
+    <color name="cardTwoTextSecondary">#12394A</color>
+    <color name="cardThreePrimary">#FFFFFF</color>
+    <color name="cardThreeSecondary">#FF4040</color>
+    <color name="cardThreeTertiary">#000000</color>
+    <color name="cardThreeTextPrimary">#000000</color>
+    <color name="cardThreeTextSecondary">#FB8B23</color>
+    <color name="cardFourPrimary">#FFFFFF</color>
+    <color name="cardFourSecondary">#FB8B23</color>
+    <color name="cardFourTertiary">#000000</color>
+    <color name="cardFourTextPrimary">#000000</color>
+    <color name="cardFourTextSecondary">#FFFFFF</color>
+    <color name="cardFivePrimary">#000000</color>
+    <color name="cardFiveSecondary">#FB8B23</color>
+    <color name="cardFiveTertiary">#FFFFFF</color>
+    <color name="cardFiveTextPrimary">#FFFFFF</color>
+    <color name="cardFiveTextSecondary">#000000</color>
+</resources>
