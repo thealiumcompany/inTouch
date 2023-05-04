@@ -13,8 +13,10 @@ import android.util.Log
 import android.view.View
 import android.view.ViewStub
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -87,40 +89,33 @@ class EditCard : AppCompatActivity() {
 
         val clickedCard = intent.getStringExtra("Clicked Card")
 
-        activityEditCardBinding = DataBindingUtil.setContentView(this@EditCard, R.layout.activity_edit_card)
+        backPressed()
 
         val cardDetails = CardDetails()
         val colorBinding = ColorBinding()
 
+        val sessionManager = SessionManager(this@EditCard)
+        val cardDetail: HashMap<String, String> = sessionManager.getEditCardDetails()
+
+        cardDetails.website = cardDetail[sessionManager.WEBSITE]
+        cardDetails.name = cardDetail[sessionManager.NAME]
+        cardDetails.position = cardDetail[sessionManager.POSITION]
+        cardDetails.phone1 = cardDetail[sessionManager.PHONE_1]
+        cardDetails.phone2 = cardDetail[sessionManager.PHONE_2]
+        cardDetails.email1 = cardDetail[sessionManager.EMAIL_1]
+        cardDetails.email2 = cardDetail[sessionManager.EMAIL_2]
+        cardDetails.streetAddress = cardDetail[sessionManager.STREET_ADDRESS]
+        cardDetails.cityTown = cardDetail[sessionManager.CITY_TOWN]
+
+        colorBinding.primaryColor = cardDetail[sessionManager.PRIMARY_COLOR]
+        colorBinding.secondaryColor = cardDetail[sessionManager.SECONDARY_COLOR]
+        colorBinding.tertiaryColor = cardDetail[sessionManager.TERTIARY_COLOR]
+        colorBinding.textPrimaryColor = cardDetail[sessionManager.TEXT_PRIMARY_COLOR]
+        colorBinding.textSecondaryColor = cardDetail[sessionManager.TEXT_SECONDARY_COLOR]
+
+        activityEditCardBinding = DataBindingUtil.setContentView(this@EditCard, R.layout.activity_edit_card)
         activityEditCardBinding.cardDetails = cardDetails
         activityEditCardBinding.colorBinding = colorBinding
-
-        database = FirebaseDatabase.getInstance("https://intouch-6eeb7-default-rtdb.europe-west1.firebasedatabase.app").reference
-        val query: Query = database.child("Cards").child(userID).child(clickedCard!!)
-        query.addValueEventListener(object: ValueEventListener  {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                cardDetails.website = dataSnapshot.child("website").value as String?
-                cardDetails.name = dataSnapshot.child("name").value as String?
-                cardDetails.position = dataSnapshot.child("position").value as String?
-                cardDetails.phone1 = dataSnapshot.child("phoneNo1").value as String?
-                cardDetails.phone2 = dataSnapshot.child("phoneNo2").value as String?
-                cardDetails.email1 = dataSnapshot.child("email1").value as String?
-                cardDetails.email2 = dataSnapshot.child("email2").value as String?
-                cardDetails.streetAddress = dataSnapshot.child("streetAddress").value as String?
-                cardDetails.cityTown = dataSnapshot.child("cityTown").value as String?
-
-                colorBinding.primaryColor = dataSnapshot.child("primaryColor").value as String?
-                colorBinding.secondaryColor = dataSnapshot.child("secondaryColor").value as String?
-                colorBinding.tertiaryColor = dataSnapshot.child("tertiaryColor").value as String?
-                colorBinding.textPrimaryColor = dataSnapshot.child("primaryTextColor").value as String?
-                colorBinding.textSecondaryColor = dataSnapshot.child("secondaryTextColor").value as String?
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.v("Error", "Failed to query database")
-            }
-        })
 
         currentCardEditingSection = findViewById(R.id.edit_card_editing_section)
         currentCardFrontSection = findViewById(R.id.edit_card_front_section)
@@ -153,6 +148,8 @@ class EditCard : AppCompatActivity() {
         progressBarAddNew = findViewById(R.id.progress_bar_edit)
 
         currentCardName.text = clickedCard
+
+        inflateCorrectCardBG()
 
         backShow.setOnClickListener {
             currentCardFront.visibility = View.INVISIBLE
@@ -424,22 +421,7 @@ class EditCard : AppCompatActivity() {
     }
 
     private fun inflateCorrectCardBG() {
-        val clickedCard = intent.getStringExtra("Clicked Card")
-        var cardStyle: String? = ""
-        val query: Query = database.child("Cards").child(userID).child(clickedCard!!)
-
-        query.addValueEventListener(object: ValueEventListener  {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                cardStyle = snapshot.child("cardStyle").value as String?
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.v("Error", "Failed to query database")
-            }
-
-        })
-
-        when (cardStyle)    {
+        when (intent.getStringExtra("Card Style"))    {
             "Elegant" -> {
                 currentCardBack.layoutResource = R.layout.card_design_elegant_back
                 currentCardFront.layoutResource = R.layout.card_design_elegant_front
@@ -477,35 +459,39 @@ class EditCard : AppCompatActivity() {
         }
     }
 
+    private fun backPressed() {
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finish()
+            }
+        })
+    }
+
     fun purgatory() {
         val clickedCard = intent.getStringExtra("Clicked Card")
 
+        val cardDetails = CardDetails()
+        val colorBinding = ColorBinding()
+
+        database = FirebaseDatabase.getInstance("https://intouch-6eeb7-default-rtdb.europe-west1.firebasedatabase.app").reference
         val query: Query = database.child("Cards").child(userID).child(clickedCard!!)
         query.addValueEventListener(object: ValueEventListener  {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var cityTown = dataSnapshot.child("cityTown").value as String?
-                var email1 = dataSnapshot.child("email1").value as String?
-                var email2 = dataSnapshot.child("email2").value as String?
-                var name = dataSnapshot.child("name").value as String?
-                var phoneNo1 = dataSnapshot.child("phoneNo1").value as String?
-                var phoneNo2 = dataSnapshot.child("phoneNo2").value as String?
-                var position = dataSnapshot.child("position").value as String?
-                var primaryColor = dataSnapshot.child("primaryColor").value as String?
-                var primaryTextColor = dataSnapshot.child("primaryTextColor").value as String?
-                var secondaryColor = dataSnapshot.child("secondaryColor").value as String?
-                var secondaryTextColor = dataSnapshot.child("secondaryTextColor").value as String?
-                var streetAddress = dataSnapshot.child("streetAddress").value as String?
-                var tertiaryColor = dataSnapshot.child("tertiaryColor").value as String?
-                var website = dataSnapshot.child("website").value as String?
+                cardDetails.website = dataSnapshot.child("website").value as String?
+                cardDetails.name = dataSnapshot.child("name").value as String?
+                cardDetails.position = dataSnapshot.child("position").value as String?
+                cardDetails.phone1 = dataSnapshot.child("phoneNo1").value as String?
+                cardDetails.phone2 = dataSnapshot.child("phoneNo2").value as String?
+                cardDetails.email1 = dataSnapshot.child("email1").value as String?
+                cardDetails.email2 = dataSnapshot.child("email2").value as String?
+                cardDetails.streetAddress = dataSnapshot.child("streetAddress").value as String?
+                cardDetails.cityTown = dataSnapshot.child("cityTown").value as String?
 
-                println(website)
-
-                val cardDetails = CardDetails()
-
-                val colorBinding = ColorBinding()
-
-                activityEditCardBinding.cardDetails = cardDetails
-                activityEditCardBinding.colorBinding = colorBinding
+                colorBinding.primaryColor = dataSnapshot.child("primaryColor").value as String?
+                colorBinding.secondaryColor = dataSnapshot.child("secondaryColor").value as String?
+                colorBinding.tertiaryColor = dataSnapshot.child("tertiaryColor").value as String?
+                colorBinding.textPrimaryColor = dataSnapshot.child("primaryTextColor").value as String?
+                colorBinding.textSecondaryColor = dataSnapshot.child("secondaryTextColor").value as String?
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -515,9 +501,42 @@ class EditCard : AppCompatActivity() {
 
         inflateCorrectCardBG()
 
-        val cardDetails = CardDetails()
+        val sessionManager = SessionManager(this@EditCard)
+        val cardDetail: HashMap<String, String> = sessionManager.getEditCardDetails()
 
-        val colorBinding = ColorBinding()
+        cardDetails.website = cardDetail[sessionManager.WEBSITE]
+        cardDetails.name = cardDetail[sessionManager.NAME]
+        cardDetails.position = cardDetail[sessionManager.POSITION]
+        cardDetails.phone1 = cardDetail[sessionManager.PHONE_1]
+        cardDetails.phone2 = cardDetail[sessionManager.PHONE_2]
+        cardDetails.email1 = cardDetail[sessionManager.EMAIL_1]
+        cardDetails.email2 = cardDetail[sessionManager.EMAIL_2]
+        cardDetails.streetAddress = cardDetail[sessionManager.STREET_ADDRESS]
+        cardDetails.cityTown = cardDetail[sessionManager.CITY_TOWN]
+
+        colorBinding.primaryColor = cardDetail[sessionManager.PRIMARY_COLOR]
+        colorBinding.secondaryColor = cardDetail[sessionManager.SECONDARY_COLOR]
+        colorBinding.tertiaryColor = cardDetail[sessionManager.TERTIARY_COLOR]
+        colorBinding.textPrimaryColor = cardDetail[sessionManager.TEXT_PRIMARY_COLOR]
+        colorBinding.textSecondaryColor = cardDetail[sessionManager.TEXT_SECONDARY_COLOR]
+
+        val cardDetailsPH = CardDetails()
+        cardDetailsPH.website = resources.getString(R.string.alium_website)
+        cardDetailsPH.name = resources.getString(R.string.my_name)
+        cardDetailsPH.position = resources.getString(R.string.chief_executive_officer)
+        cardDetailsPH.phone1 = resources.getString(R.string.phone_no_1)
+        cardDetailsPH.phone2 = resources.getString(R.string.phone_no_2)
+        cardDetailsPH.email1 = resources.getString(R.string.mishaelopokuboamah_gmail_com)
+        cardDetailsPH.email2 = resources.getString(R.string.email_user_email_com)
+        cardDetailsPH.streetAddress = resources.getString(R.string.house_no_15_gamba_street)
+        cardDetailsPH.cityTown = resources.getString(R.string.accra_central)
+
+        val colorBindingPH = ColorBinding()
+        colorBindingPH.primaryColor = "#FB8B23"
+        colorBindingPH.secondaryColor = "#FFFFFF"
+        colorBindingPH.tertiaryColor = "#000000"
+        colorBindingPH.textPrimaryColor = "#FFFFFF"
+        colorBindingPH.textSecondaryColor = "#000000"
 
         activityEditCardBinding.cardDetails = cardDetails
         activityEditCardBinding.colorBinding = colorBinding

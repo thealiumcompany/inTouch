@@ -1,6 +1,7 @@
 package com.thealiumcompany.intouch
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -33,11 +34,42 @@ class CardAdapter(
         init {
             binding.root.setOnClickListener {
                 val position = adapterPosition
-                var clickedCard = fileNames[position]
+                val clickedCard = fileNames[position]
 
-                var intent = Intent(binding.root.context, EditCard::class.java)
-                intent.putExtra("Clicked Card", clickedCard)
-                binding.root.context.startActivity(intent)
+                database = FirebaseDatabase.getInstance("https://intouch-6eeb7-default-rtdb.europe-west1.firebasedatabase.app").reference
+                val query: Query = database.child("Cards").child(userID).child(clickedCard)
+                query.addValueEventListener(object: ValueEventListener  {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        var cardStyle = dataSnapshot.child("cardStyle").value as String?
+                        var website = dataSnapshot.child("website").value as String?
+                        var name = dataSnapshot.child("name").value as String?
+                        var position_ = dataSnapshot.child("position").value as String?
+                        var phone1 = dataSnapshot.child("phoneNo1").value as String?
+                        var phone2 = dataSnapshot.child("phoneNo2").value as String?
+                        var email1 = dataSnapshot.child("email1").value as String?
+                        var email2 = dataSnapshot.child("email2").value as String?
+                        var streetAddress = dataSnapshot.child("streetAddress").value as String?
+                        var cityTown = dataSnapshot.child("cityTown").value as String?
+
+                        var primaryColor = dataSnapshot.child("primaryColor").value as String?
+                        var secondaryColor = dataSnapshot.child("secondaryColor").value as String?
+                        var tertiaryColor = dataSnapshot.child("tertiaryColor").value as String?
+                        var textPrimaryColor = dataSnapshot.child("primaryTextColor").value as String?
+                        var textSecondaryColor = dataSnapshot.child("secondaryTextColor").value as String?
+
+                        var sessionManager = SessionManager(binding.root.context)
+                        sessionManager.createEditCardSession(website!!, name!!, position_!!, phone1!!, phone2!!, email1!!, email2!!, streetAddress!!, cityTown!!, primaryColor!!, secondaryColor!!, tertiaryColor!!, textPrimaryColor!!, textSecondaryColor!!)
+
+                        var intent = Intent(binding.root.context, EditCard::class.java)
+                        intent.putExtra("Clicked Card", clickedCard)
+                        intent.putExtra("Card Style", cardStyle)
+                        binding.root.context.startActivity(intent)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.v("Error", "Failed to query database")
+                    }
+                })
             }
         }
     }
