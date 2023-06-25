@@ -3,6 +3,7 @@ package com.thealiumcompany.intouch
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
@@ -133,11 +134,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         listFiles()
 
         swipeRefreshHome.setOnRefreshListener {
+            refreshItems()
+        }
+    }
+
+    private fun refreshItems() {
+        val handler = Handler()
+        handler.postDelayed({
             latestUploadTime = 0
             listFiles()
             recycleCardsHome.adapter?.notifyDataSetChanged()
             swipeRefreshHome.isRefreshing = false
-        }
+        }, 3000)
     }
 
     private fun checkRecyclerView() {

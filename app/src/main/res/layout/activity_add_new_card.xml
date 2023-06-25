@@ -461,7 +461,7 @@
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/card_name"
+                            android:id="@+id/name"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"

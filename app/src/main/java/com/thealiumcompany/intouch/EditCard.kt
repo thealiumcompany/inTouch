@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.view.ViewStub
@@ -191,12 +192,16 @@ class EditCard : AppCompatActivity() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(R.layout.save_card_dialog)
 
+        val clickedCard = intent.getStringExtra("Clicked Card")
+
         val cardFrontPreview: ImageView = dialog.findViewById(R.id.card_front_preview)
         val cardBackPreview: ImageView = dialog.findViewById(R.id.card_back_preview)
         val cardName: EditText = dialog.findViewById(R.id.card_name)
         val closeDialog: ImageView = dialog.findViewById(R.id.close_dialog)
         val downloadCardButton: ImageView = dialog.findViewById(R.id.download_card_button)
         val saveToDatabase: ImageView = dialog.findViewById(R.id.save_to_database)
+
+        cardName.text = Editable.Factory.getInstance().newEditable(clickedCard)
 
         var cardNameText = cardName.text.toString().trim()
 
@@ -266,7 +271,7 @@ class EditCard : AppCompatActivity() {
             var primaryTextCC = textPrimaryColorCode.text.toString().trim()
             var secondaryTextCC = textSecondaryColorCode.text.toString().trim()
             var website = cardWebsite.text.toString().trim()
-            var name = cardName.text.toString().trim()
+            var name = this.cardName.text.toString().trim()
             var position = cardPosition.text.toString().trim()
             var phone1 = cardPhone1.text.toString().trim()
             var phone2 = cardPhone2.text.toString().trim()
@@ -275,24 +280,6 @@ class EditCard : AppCompatActivity() {
             var streetAddress = cardStreetAddress.text.toString().trim()
             var cityTown = cardCityTown.text.toString().trim()
             var cardStyle = currentCardName.text.toString().trim()
-
-            var card = Card(
-                primaryCC,
-                secondaryCC,
-                tertiaryCC,
-                primaryTextCC,
-                secondaryTextCC,
-                website,
-                name,
-                position,
-                phone1,
-                phone2,
-                email1,
-                email2,
-                streetAddress,
-                cityTown,
-                cardStyle
-            )
 
             if (cardName.text.isNotEmpty())  {
                 progressBarAddNew.visibility = View.VISIBLE
@@ -307,32 +294,86 @@ class EditCard : AppCompatActivity() {
                 val data: ByteArray = baos.toByteArray()
                 fileRef.putBytes(data)
 
-                FirebaseDatabase.getInstance("https://intouch-6eeb7-default-rtdb.europe-west1.firebasedatabase.app")
-                    .getReference("Cards")
-                    .child(userID)
-                    .child(cardName.text.toString().trim())
-                    .setValue(card)
-                    .addOnCompleteListener {
-                        if (it.isComplete) {
-                            Toast.makeText(baseContext, "Saved to Database", Toast.LENGTH_SHORT).show()
-                            progressBarAddNew.visibility = View.GONE
-                            dialog.dismiss()
-                        } else {
-                            Toast.makeText(
-                                baseContext,
-                                "Check connection and try again",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            progressBarAddNew.visibility = View.GONE
-                        }
-                    }
+                updateChildren (
+                    primaryCC,
+                    secondaryCC,
+                    tertiaryCC,
+                    primaryTextCC,
+                    secondaryTextCC,
+                    website,
+                    name,
+                    position,
+                    phone1,
+                    phone2,
+                    email1,
+                    email2,
+                    streetAddress,
+                    cityTown,
+                    cardStyle
+                )
             } else {
                 Toast.makeText(baseContext, "Enter a card name", Toast.LENGTH_SHORT).show()
             }
-
+            finish()
         }
 
         dialog.show()
+    }
+
+    private fun updateChildren(
+        primaryCC: String,
+        secondaryCC: String,
+        tertiaryCC: String,
+        primaryTextCC: String,
+        secondaryTextCC: String,
+        website: String,
+        name: String,
+        position: String,
+        phone1: String,
+        phone2: String,
+        email1: String,
+        email2: String,
+        streetAddress: String,
+        cityTown: String,
+        cardStyle: String
+    ) {
+        val clickedCard = intent.getStringExtra("Clicked Card")
+
+        var card: HashMap<String, Any> = HashMap()
+        card["primaryCC"] = primaryCC
+        card["secondaryCC"] = secondaryCC
+        card["tertiaryCC"] = tertiaryCC
+        card["primaryTextCC"] = primaryTextCC
+        card["secondaryTextCC"] = secondaryTextCC
+        card["website"] = website
+        card["name"] = name
+        card["position"] = position
+        card["phone1"] = phone1
+        card["phone2"] = phone2
+        card["email1"] = email1
+        card["email2"] = email2
+        card["streetAddress"] = streetAddress
+        card["cityTown"] = cityTown
+        card["cardStyle"] = cardStyle
+
+        FirebaseDatabase.getInstance("https://intouch-6eeb7-default-rtdb.europe-west1.firebasedatabase.app")
+            .getReference("Cards")
+            .child(userID)
+            .child(clickedCard!!)
+            .updateChildren(card)
+            .addOnCompleteListener {
+                if (it.isComplete) {
+                    Toast.makeText(baseContext, "Saved to Database", Toast.LENGTH_SHORT).show()
+                    progressBarAddNew.visibility = View.GONE
+                } else {
+                    Toast.makeText(
+                        baseContext,
+                        "Check connection and try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    progressBarAddNew.visibility = View.GONE
+                }
+            }
     }
 
     private fun setPrimaryColor() {
